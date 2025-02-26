@@ -12,7 +12,7 @@ Clone the repository into your ROS 2 workspace and build it:
 
 ```bash
 cd ~/ros2_ws/src
-git clone <repository-url>
+git clone https://github.com/dhanushshettigar/tcebot_gz.git
 cd ~/ros2_ws
 colcon build --packages-select tcebot_gz
 source install/setup.bash
