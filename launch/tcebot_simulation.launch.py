@@ -32,6 +32,8 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
+    model_path = os.path.join(get_package_share_directory('tcebot_sim'), 'models')
+    os.environ['GZ_SIM_RESOURCE_PATH'] = model_path + ':' + os.environ.get('GZ_SIM_RESOURCE_PATH', '')
     # Get the launch directory
     bringup_dir = get_package_share_directory('tcebot_gz')
     nav2_dir = get_package_share_directory('nav2_bringup')
@@ -58,8 +60,8 @@ def generate_launch_description():
     headless = LaunchConfiguration('headless')
     world = LaunchConfiguration('world')
     pose = {
-        'x': LaunchConfiguration('x_pose', default='-8.00'),  # Warehouse: 2.12
-        'y': LaunchConfiguration('y_pose', default='0.00'),  # Warehouse: -21.3
+        'x': LaunchConfiguration('x_pose', default='-8.00'),  # Warehouse: 2.12 # Depot: -8.0 # Arena: 0.00
+        'y': LaunchConfiguration('y_pose', default='0.00'),  # Warehouse: -21.3 # Depot: 0.00 # Arena: - 0.05
         'z': LaunchConfiguration('z_pose', default='0.01'),
         'R': LaunchConfiguration('roll', default='0.00'),
         'P': LaunchConfiguration('pitch', default='0.00'),
@@ -149,7 +151,7 @@ def generate_launch_description():
 
     declare_world_cmd = DeclareLaunchArgument(
         'world',
-        default_value=os.path.join(sim_dir, 'worlds', 'depot.sdf'),  # Try warehouse.sdf!
+        default_value=os.path.join(sim_dir, 'worlds', 'depot.sdf'),  # Try warehouse.sdf!,arena_maze.sdf!
         description='Full path to world model file to load',
     )
 
