@@ -45,3 +45,12 @@ Once **RViz** is launched, follow these steps:
 - Wait for the system to detect the robot’s position.
 
 - Use the top bar **"2D Goal Pose"** tool to set a goal. The robot will autonomously navigate to the given location.
+
+### Install Cartographer and Dependencies
+
+```bash
+sudo apt update
+sudo apt install -y \
+    ros-jazzy-cartographer-ros \
+    ros-jazzy-cartographer-ros-msgs \
+```
